@@ -56,6 +56,20 @@ class UserController {
       return res.status(400).json({ message: e.message })
     }
   }
+
+  async delete(req: Request, res: Response): Promise<Response> {
+    const { email, password }: IUser = req.body
+
+    const userService = new UserService()
+
+    try {
+      await userService.delete({ email, password })
+
+      return res.json({ message:  `User ${email} deleted!` })
+    } catch (e) {
+      return res.status(400).json({ message: e.message })
+    }
+  }
 }
 
 export default UserController

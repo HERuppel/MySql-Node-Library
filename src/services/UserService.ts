@@ -95,6 +95,22 @@ class UserService {
 
     return { user: userExists, token}
   }
+
+  async delete({ email, password }: IRequest): Promise<void> {
+    const userExists = await this.usersRepository.findOne({
+      email
+    })
+
+    if (!userExists) throw new Error('User does not exists')
+
+    const passwordMatch = await compare(password, userExists.password)
+
+    if (!passwordMatch) throw new Error('Incorrect password')
+
+    await this.usersRepository.delete({ id: userExists.id })
+
+    return 
+  }
 }
 
 export default UserService

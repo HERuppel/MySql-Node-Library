@@ -9,5 +9,6 @@ const userController = new UserController()
 userRoutes.post('/register', userController.create)
 userRoutes.post('/signin', userController.signin)
 userRoutes.put('/update', ensureAuth, userController.update)
+userRoutes.delete('/delete', ensureAuth, userController.delete)
 
 export default userRoutes 
