@@ -4,9 +4,6 @@ import User from '../models/User'
 import authConfig from '../config/auth'
 import { sign } from 'jsonwebtoken'
 
-import dotenv from 'dotenv'
-dotenv.config()
-
 interface IRequest {
   username?: string
   email: string

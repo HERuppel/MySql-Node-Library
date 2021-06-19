@@ -3,7 +3,7 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeor
 @Entity('user')
 class User {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id: string
 
   @Column()
   username: string
@@ -18,7 +18,7 @@ class User {
   age: number
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at: Date
 }
 
 export default User
