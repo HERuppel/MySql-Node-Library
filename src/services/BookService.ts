@@ -1,4 +1,4 @@
-import { getRepository, Like, Repository } from 'typeorm'
+import { DeleteResult, getRepository, Like, Repository, UpdateResult } from 'typeorm'
 import Book from '../models/Book'
 import User from '../models/User'
 
@@ -12,6 +12,7 @@ interface IRequest {
   genre?: string
   user_id?: string
   filter?: string | unknown
+  id?: string
 }
 
 class BookService {
@@ -81,6 +82,36 @@ class BookService {
     })
 
     return books
+  }
+
+  async update ({ email, id, name, author, pages, publisher, genre, year }: IRequest): Promise<Book | undefined> {
+    const userExists = await this.userRepository.findOne({ email })
+
+    if (!userExists) throw new Error('User does not exist')
+
+    await this.bookRepository.update({ id, user_id: userExists }, {
+      name,
+      author,
+      pages,
+      publisher,
+      genre,
+      year,
+      user_id: userExists
+    })
+
+    const book = await this.bookRepository.findOne({ id })
+
+    return book
+  }
+
+  async delete ({ email, id }: IRequest): Promise<DeleteResult> {
+    const userExists = await this.userRepository.findOne({ email })
+
+    if (!userExists) throw new Error('User does not exist')
+
+    const book = await this.bookRepository.delete({ id, user_id: userExists })
+
+    return book 
   }
 }
 

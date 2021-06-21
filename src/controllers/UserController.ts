@@ -23,7 +23,7 @@ class UserController {
     try {
       const user = await userService.create({ username, age, email, password })
   
-      return res.json(user)
+      return res.status(200).json(user)
     } catch (e) {
       return res.status(400).json({ message: e.message })
     }
@@ -37,7 +37,7 @@ class UserController {
     try {
       const user = await userService.signin({ email, password })
 
-      return res.json(user)
+      return res.status(200).json(user)
     } catch (e) {
       return res.status(400).json({ message: e.message })
     }
@@ -51,7 +51,7 @@ class UserController {
     try {
       const user = await userService.update({ email, username, age })
 
-      return res.json(user)
+      return res.status(200).json(user)
     } catch (e) {
       return res.status(400).json({ message: e.message })
     }
@@ -65,7 +65,7 @@ class UserController {
     try {
       await userService.delete({ email, password })
 
-      return res.json({ message:  `User ${email} deleted!` })
+      return res.status(200).json({ message:  `User ${email} deleted!` })
     } catch (e) {
       return res.status(400).json({ message: e.message })
     }
