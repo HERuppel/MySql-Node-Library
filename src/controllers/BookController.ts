@@ -1,19 +1,9 @@
 import { Request, Response } from 'express'
 import BookService from '../services/BookService'
 
-interface IBook {
-  email: string
-  name: string
-  author: string
-  publisher: string
-  year: number
-  pages: number
-  genre: string
-}
-
 class BookController {
   async create(req: Request, res: Response): Promise<Response> {
-    const { email, name, author, publisher, year, pages, genre }: IBook = req.body
+    const { email, name, author, publisher, year, pages, genre } = req.body
 
     const bookService = new BookService()
 

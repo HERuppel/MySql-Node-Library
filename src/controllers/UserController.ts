@@ -1,22 +1,9 @@
 import { Request, Response } from 'express'
 import UserService from '../services/UserService'
 
-interface IUser {
-  username?: string
-  email: string
-  age?: number
-  password: string
-}
-
-interface IUpdate {
-  username?: string
-  age?: number
-  email: string
-}
-
 class UserController {
   async create(req: Request, res: Response): Promise<Response> {
-    const { username, email, age, password }: IUser = req.body
+    const { username, email, age, password } = req.body
 
     const userService = new UserService()
 
@@ -30,7 +17,7 @@ class UserController {
   }
 
   async signin(req: Request, res: Response): Promise<Response> {
-    const { email, password }: IUser = req.body
+    const { email, password } = req.body
 
     const userService = new UserService()
 
@@ -44,7 +31,7 @@ class UserController {
   }
 
   async update(req: Request, res: Response): Promise<Response> {
-    const { email , username = '', age = 0 }: IUpdate= req.body
+    const { email , username = '', age = 0 } = req.body
 
     const userService = new UserService()
 
@@ -58,7 +45,7 @@ class UserController {
   }
 
   async delete(req: Request, res: Response): Promise<Response> {
-    const { email, password }: IUser = req.body
+    const { email, password } = req.body
 
     const userService = new UserService()
 
