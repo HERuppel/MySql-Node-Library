@@ -1,4 +1,4 @@
-import { DeleteResult, getRepository, Like, Repository, UpdateResult } from 'typeorm'
+import { DeleteResult, getRepository, Like, Repository } from 'typeorm'
 import Book from '../models/Book'
 import User from '../models/User'
 
